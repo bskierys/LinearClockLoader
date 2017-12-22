@@ -60,5 +60,5 @@ public abstract class RoadRunner extends View {
     return pathLength;
   }
 
-  abstract void setColor(int color);
+  public abstract void setColor(int color);
 }

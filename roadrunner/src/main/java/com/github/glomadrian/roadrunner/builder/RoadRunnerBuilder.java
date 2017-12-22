@@ -6,9 +6,6 @@ import android.graphics.Color;
 import com.github.glomadrian.roadrunner.RoadRunner;
 import com.github.glomadrian.roadrunner.painter.configuration.Direction;
 
-/**
- * Created by Yahya Bayramoglu on 08/04/16.
- */
 public abstract class RoadRunnerBuilder {
 
     public Context context;
