@@ -3,9 +3,11 @@
      android:duration="@integer/change_places_anim_duration"
      android:ordering="together">
     <objectAnimator android:propertyName="translateX"
+                    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
                     android:valueFrom="-14"
                     android:valueTo="0"/>
     <objectAnimator android:propertyName="translateY"
+                    android:interpolator="@android:anim/accelerate_decelerate_interpolator"
                     android:valueFrom="15"
                     android:valueTo="0"/>
 </set>
