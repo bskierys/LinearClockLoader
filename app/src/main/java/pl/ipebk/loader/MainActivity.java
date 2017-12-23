@@ -2,38 +2,50 @@ package pl.ipebk.loader;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.SeekBar;
+import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import butterknife.OnClick;
 
-public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBarChangeListener {
-    @BindView(R.id.seek) SeekBar seekBar;
+public class MainActivity extends AppCompatActivity {
     @BindView(R.id.clock_loading) MultiPathIndeterminateRoadRunner clockLoading;
+    @BindView(R.id.txt_loading_prompt) TextView loadingPrompt;
+    @BindView(R.id.borders) ImageView borderView;
 
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main_2);
+        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-
-        seekBar.setOnSeekBarChangeListener(this);
     }
 
-    @OnClick(R.id.runButton)
-    public void runButtonClick() {
-        clockLoading.start();
+    @Override public void onStart() {
+        super.onStart();
+        run();
+
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(800, 600);
+        params.addRule(RelativeLayout.CENTER_IN_PARENT, RelativeLayout.TRUE);
+        borderView.setLayoutParams(params);
     }
 
-    @OnClick(R.id.stopButton)
-    public void stopButtonClick() {
-        clockLoading.stop();
+    private void run() {
+        clockLoading.postDelayed(new Runnable() {
+            @Override public void run() {
+                loadingPrompt.setVisibility(View.VISIBLE);
+                prepare();
+                loadingPrompt.setVisibility(View.INVISIBLE);
+                clockLoading.start();
+            }
+        }, 1000);
     }
 
-    @OnClick(R.id.prepareButton) public void prepare() {
+    private void prepare() {
         List<String> paths = new ArrayList<>();
         paths.add(getResources().getString(R.string.clock_3_path));
         paths.add(getResources().getString(R.string.clock_4_path));
@@ -47,23 +59,5 @@ public class MainActivity extends AppCompatActivity implements SeekBar.OnSeekBar
         for (int i = 0; i < paths.size(); i++) {
             clockLoading.addNewPath(paths.get(i));
         }
-    }
-
-    @Override
-    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-        if (clockLoading != null) {
-            stopButtonClick(); // Stop the animation first, if it is running
-            clockLoading.setProgress(progress);
-        }
-    }
-
-    @Override
-    public void onStartTrackingTouch(SeekBar seekBar) {
-
-    }
-
-    @Override
-    public void onStopTrackingTouch(SeekBar seekBar) {
-
     }
 }

@@ -25,8 +25,7 @@ import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
 
-import cimi.com.easeinterpolator.EaseQuintInOutInterpolator;
-import timber.log.Timber;
+import cimi.com.easeinterpolator.EaseQuadInOutInterpolator;
 
 /**
  * TODO: Generic description. Replace with real one.
@@ -78,7 +77,7 @@ public class MultiPathIndeterminateRoadRunner extends RoadRunner implements Anim
      * Added as hack
      */
     public void addNewPath(String pathData) {
-        if(getHeight() == 0 || getWidth() == 0) {
+        if (getHeight() == 0 || getWidth() == 0) {
             throw new IllegalStateException("view not visible yet: height || width == 0");
         }
 
@@ -104,11 +103,11 @@ public class MultiPathIndeterminateRoadRunner extends RoadRunner implements Anim
     public void start() {
         if (infiniteAnimator == null) {
             infiniteAnimator = ObjectAnimator.ofInt(this, ProgressRoadRunner.PROGRESS, 100);
-            infiniteAnimator.setDuration(1000);
+            infiniteAnimator.setDuration(800);
             infiniteAnimator.setRepeatMode(ObjectAnimator.REVERSE);
             infiniteAnimator.setRepeatCount(ObjectAnimator.INFINITE);
             infiniteAnimator.addListener(this);
-            infiniteAnimator.setInterpolator(new EaseQuintInOutInterpolator());
+            infiniteAnimator.setInterpolator(new EaseQuadInOutInterpolator());
         }
         infiniteAnimator.start();
     }
@@ -160,7 +159,7 @@ public class MultiPathIndeterminateRoadRunner extends RoadRunner implements Anim
     @Override protected void onSizeChanged(int w, int h, int oldw, int oldh) {
         super.onSizeChanged(w, h, oldw, oldh);
 
-        if(progressPainters.size() != 0) {
+        if (progressPainters.size() != 0) {
             redrawNewPath(currentPathIndex);
             return;
         }
@@ -231,8 +230,6 @@ public class MultiPathIndeterminateRoadRunner extends RoadRunner implements Anim
     @Override public void onAnimationRepeat(Animator animator) {
         animationRepeatCounter++;
         if (animationRepeatCounter % 2 == 0) {
-            Timber.d("Setting new path");
-
             redrawNewPath(getNextProgressPainterIndex());
         }
     }
@@ -258,7 +255,6 @@ public class MultiPathIndeterminateRoadRunner extends RoadRunner implements Anim
 
             return new MultiPathIndeterminateRoadRunner(this);
         }
-
     }
 
 }

@@ -1,45 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="pl.ipebk.loader.MainActivity">
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
 
-    <com.github.glomadrian.roadrunner.IndeterminateRoadRunner
-        android:padding="5dp"
-        android:id="@+id/clock_loading"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        app:movement_direction="counter_clockwise"
-        app:path_color="#674540"
-        app:stroke_width="2dp"
-        app:path_data="@string/clock_4_path"
-        app:path_original_width="@integer/clock_width"
-        app:path_original_height="@integer/clock_height"
-        app:path_animation_type="material"
-        android:layout_centerInParent="true"/>
-
-    <!--<com.github.glomadrian.roadrunner.DeterminateRoadRunner
-        android:padding="5dp"
-        android:id="@+id/clock_loading"
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        app:movement_direction="counter_clockwise"
-        app:path_color="#000000"
-        app:stroke_width="2dp"
-        app:path_data="@string/clock_4_path"
-        app:path_original_width="@integer/clock_width"
-        app:path_original_height="@integer/clock_height"
-        app:line_size="0.5"
-        app:animate_on_start="false"
-        android:layout_centerInParent="true"/>
-
-    <Button
-        android:id="@+id/btn_start"
+    <ImageView android:id="@+id/borders"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_alignParentBottom="true"
-        android:text="start"/>-->
+        android:src="@drawable/stroke_rectangle"
+        android:layout_centerInParent="true"/>
+
+    <TextView
+        android:id="@+id/txt_loading_prompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Loading loader :P"
+        android:layout_centerInParent="true"/>
+
+    <pl.ipebk.loader.MultiPathIndeterminateRoadRunner
+        android:id="@+id/clock_loading"
+        android:layout_width="@dimen/clock_image_size"
+        android:layout_height="@dimen/clock_image_size"
+        app:movement_direction="counter_clockwise"
+        app:path_color="@color/colorPrimary"
+        app:stroke_width="@dimen/clock_vector_stroke"
+        app:path_data="@string/clock_4_path"
+        app:path_original_width="@integer/clock_width"
+        app:path_original_height="@integer/clock_height"
+        android:layout_centerInParent="true"/>
 </RelativeLayout>
