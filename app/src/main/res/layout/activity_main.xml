@@ -25,6 +25,7 @@
         android:layout_centerInParent="true">
 
         <ImageView
+            android:id="@+id/aberration_bg"
             android:layout_width="130dp"
             android:layout_height="131dp"
             android:src="@drawable/aberration_bg"

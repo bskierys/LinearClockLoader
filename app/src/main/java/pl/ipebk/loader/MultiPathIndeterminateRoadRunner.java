@@ -50,7 +50,7 @@ public class MultiPathIndeterminateRoadRunner extends RoadRunner implements Anim
 
     private ObjectAnimator infiniteAnimator;
     private int currentPathIndex = 0;
-    private int animationRepeatCounter = 0;
+    private final List<AnimationChangeListener> listeners = new ArrayList<>();
     private List<ProgressDeterminatePainter> progressPainters = new ArrayList<>();
 
     private MultiPathIndeterminateRoadRunner(MultiPathIndeterminateRoadRunner.Builder builder) {
@@ -72,6 +72,18 @@ public class MultiPathIndeterminateRoadRunner extends RoadRunner implements Anim
         super(context, attrs, defStyleAttr);
         initPath(attrs);
         initConfiguration(attrs);
+    }
+
+    public void addAnimationChangeListener(AnimationChangeListener listener) {
+        listeners.add(listener);
+    }
+
+    public void removeAnimationChangeListener(AnimationChangeListener listener) {
+        listeners.remove(listener);
+    }
+
+    public void clearAnimationChangeListeners() {
+        listeners.clear();
     }
 
     /**
@@ -222,6 +234,9 @@ public class MultiPathIndeterminateRoadRunner extends RoadRunner implements Anim
         redrawNewPath(getNextProgressPainterIndex());
         infiniteAnimator.setStartDelay(200);
         infiniteAnimator.start();
+        for(AnimationChangeListener listener : listeners) {
+            listener.onAnimationPathChanged();
+        }
     }
 
     @Override public void onAnimationCancel(Animator animator) { }
@@ -251,4 +266,7 @@ public class MultiPathIndeterminateRoadRunner extends RoadRunner implements Anim
         }
     }
 
+    interface AnimationChangeListener {
+        void onAnimationPathChanged();
+    }
 }

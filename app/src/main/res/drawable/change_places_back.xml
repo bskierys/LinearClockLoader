@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/aberration_bg">
+    <target
+        android:name="magenta"
+        android:animation="@animator/move_magenta_back" />
+    <target
+        android:name="cyan"
+        android:animation="@animator/move_cyan_back" />
+</animated-vector>

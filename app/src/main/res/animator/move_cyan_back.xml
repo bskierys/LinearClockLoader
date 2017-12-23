@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+     android:duration="@integer/change_places_anim_duration"
+     android:ordering="together">
+    <objectAnimator android:propertyName="translateX"
+                    android:valueFrom="-14"
+                    android:valueTo="0"/>
+    <objectAnimator android:propertyName="translateY"
+                    android:valueFrom="15"
+                    android:valueTo="0"/>
+</set>
