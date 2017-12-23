@@ -11,6 +11,7 @@ This is simple app that was developed to create shot for Uplabs' Loader challang
 ## About the code
 
 As this code was prepared only to capture video and forget about it, please don't judge my code skills by the content of java files.
+This demo is poorly optimised and be sure to have that in mind when starting it. At the begging it loads and draws all the paths and UI thread will freeze for a couple of seconds, but after that everything should run smoothly.
 
 ## Libraries
 
