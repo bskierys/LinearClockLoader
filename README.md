@@ -16,7 +16,7 @@ As this code was prepared only to capture video and forget about it, please don'
 
 This effect could not be possible without two libraries:
 
-* [RoadRunner](https://github.com/glomadrian/RoadRunner) - for MVP architecture<br/>
+* [RoadRunner](https://github.com/glomadrian/RoadRunner) - for creating vector drawing effect like the clock above<br/>
 * [EaseInterpolato](https://github.com/cimi-chen/EaseInterpolator) - set of more advanced animation interpolator than provided by Android<br/>
 
 If you want to create similar effect with your own path, please be sure to fallow this [guide](http://www.useragentman.com/blog/2013/04/26/how-to-create-svg-paths-easily-using-the-gimp/), as RoadRunner is very limited library when it comes to using svg paths.
