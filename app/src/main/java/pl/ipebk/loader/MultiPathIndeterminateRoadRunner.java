@@ -2,6 +2,7 @@ package pl.ipebk.loader;
 
 import android.animation.Animator;
 import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
@@ -105,7 +106,7 @@ public class MultiPathIndeterminateRoadRunner extends RoadRunner implements Anim
             infiniteAnimator = ObjectAnimator.ofInt(this, ProgressRoadRunner.PROGRESS, 100);
             infiniteAnimator.setDuration(800);
             infiniteAnimator.setRepeatMode(ObjectAnimator.REVERSE);
-            infiniteAnimator.setRepeatCount(ObjectAnimator.INFINITE);
+            infiniteAnimator.setRepeatCount(1);
             infiniteAnimator.addListener(this);
             infiniteAnimator.setInterpolator(new EaseQuadInOutInterpolator());
         }
@@ -215,24 +216,17 @@ public class MultiPathIndeterminateRoadRunner extends RoadRunner implements Anim
                 DeterminatePainter.PROGRESS, container, this, pathPainterConfiguration);
     }
 
-    @Override public void onAnimationStart(Animator animator) {
-
-    }
+    @Override public void onAnimationStart(Animator animator) { }
 
     @Override public void onAnimationEnd(Animator animator) {
-
+        redrawNewPath(getNextProgressPainterIndex());
+        infiniteAnimator.setStartDelay(200);
+        infiniteAnimator.start();
     }
 
-    @Override public void onAnimationCancel(Animator animator) {
+    @Override public void onAnimationCancel(Animator animator) { }
 
-    }
-
-    @Override public void onAnimationRepeat(Animator animator) {
-        animationRepeatCounter++;
-        if (animationRepeatCounter % 2 == 0) {
-            redrawNewPath(getNextProgressPainterIndex());
-        }
-    }
+    @Override public void onAnimationRepeat(Animator animator) { }
 
     private void redrawNewPath(int pathIndex) {
         progressDeterminatePainter = progressPainters.get(pathIndex);
