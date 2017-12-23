@@ -3,6 +3,7 @@
                 xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:background="#ffffff"
                 android:padding="16dp">
 
     <ImageView android:id="@+id/borders"
@@ -18,15 +19,30 @@
         android:text="Loading loader :P"
         android:layout_centerInParent="true"/>
 
-    <pl.ipebk.loader.MultiPathIndeterminateRoadRunner
-        android:id="@+id/clock_loading"
-        android:layout_width="@dimen/clock_image_size"
-        android:layout_height="@dimen/clock_image_size"
-        app:movement_direction="counter_clockwise"
-        app:path_color="@color/colorPrimary"
-        app:stroke_width="@dimen/clock_vector_stroke"
-        app:path_data="@string/clock_4_path"
-        app:path_original_width="@integer/clock_width"
-        app:path_original_height="@integer/clock_height"
-        android:layout_centerInParent="true"/>
+    <RelativeLayout
+        android:layout_width="137dp"
+        android:layout_height="132dp"
+        android:layout_centerInParent="true">
+
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="131dp"
+            android:src="@drawable/aberration_bg"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"/>
+
+        <pl.ipebk.loader.MultiPathIndeterminateRoadRunner
+            android:id="@+id/clock_loading"
+            android:layout_width="@dimen/clock_image_size"
+            android:layout_height="@dimen/clock_image_size"
+            app:movement_direction="counter_clockwise"
+            app:path_color="#544389"
+            app:stroke_width="@dimen/clock_vector_stroke"
+            app:path_data="@string/clock_4_path"
+            app:path_original_width="@integer/clock_width"
+            app:path_original_height="@integer/clock_height"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentLeft="true"/>
+    </RelativeLayout>
+
 </RelativeLayout>
